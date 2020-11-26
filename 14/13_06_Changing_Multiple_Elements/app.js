@@ -9,4 +9,5 @@ for (let i = 0; i < allLis.length; i++) {
 //Another option using for...of:
 for (let li of allLis) {
   li.innerHTML = 'WE ARE <b>THE CHAMPIONS</b>'
+  li.style.color="red"
 }
