@@ -9,7 +9,7 @@ class Timer {
   }
 
   start = () => {
-    this.tick();
+    this.tick(); // the first click, need to tick immediately
     this.interval = setInterval(this.tick, 1000);
   };
 

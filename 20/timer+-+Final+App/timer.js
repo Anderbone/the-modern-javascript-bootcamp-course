@@ -15,14 +15,13 @@ class Timer {
 
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
     this.tick();
-    this.interval = setInterval(this.tick, 1000);
+    this.interval = setInterval(this.tick, 20);
   };
 
   pause = () => {
-    console.log("pause clicked!")
     clearInterval(this.interval);
   };
 
@@ -33,9 +32,9 @@ class Timer {
         this.onComplete();
       }
     } else {
-      this.timeRemaining = this.timeRemaining - 1;
+      this.timeRemaining = this.timeRemaining - 0.02;
       if (this.onTick) {
-        this.onTick();
+        this.onTick(this.timeRemaining);
       }
     }
   };
@@ -45,22 +44,6 @@ class Timer {
   }
 
   set timeRemaining(time) {
-    this.durationInput.value = time;
+    this.durationInput.value = time.toFixed(2);
   }
 }
-
-const durationInput = document.querySelector('#duration');
-const startButton = document.querySelector('#start');
-const pauseButton = document.querySelector('#pause');
-
-const timer = new Timer(durationInput, startButton, pauseButton, {
-  onStart() {
-    console.log('Timer started');
-  },
-  onTick() {
-    console.log('Timer just ticked down');
-  },
-  onComplete() {
-    console.log('Timer is completed');
-  }
-});
