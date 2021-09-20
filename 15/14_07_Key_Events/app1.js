@@ -9,9 +9,10 @@ function addItem(e) {
 	if (e.key === "Enter" || e.type === "click") {
 		const li = document.createElement("li")
 		const foodInput = document.querySelector("#addItem")
-		li.appendChild(document.createTextNode(foodInput.value))
+		// li.appendChild(document.createTextNode(foodInput.value))
+		li.innerText = foodInput.value
 		const ul = document.querySelector("#items")
 		ul.appendChild(li)
-		foodInput.value = null
+		foodInput.value = ''
 	}
 }
