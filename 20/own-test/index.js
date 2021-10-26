@@ -1,14 +1,22 @@
-const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
-const timer = new Timer(durationInput, startButton, pauseButton, {
+const duration = document.querySelector('#duration');
+
+const mytimer = new Timer(duration, startButton, pauseButton, {
 	onStart() {
-		console.log('Time started');
+		console.log("timer started");
+
 	},
 	onTick() {
-		console.log('time ticked down');
+		console.log("timer ticked")
+		
 	},
 	onComplete() {
-		console.log('time completed');
+		console.log("timer completed")
 	}
 });
+
+// startButton.addEventListener('click', mytimer.clickStart());
+
+startButton.addEventListener('click', mytimer.start);
+pauseButton.addEventListener('click', mytimer.pause)

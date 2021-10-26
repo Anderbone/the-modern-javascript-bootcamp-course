@@ -1,51 +1,48 @@
 class Timer {
-	constructor(durationInput, startButton, pauseButton, callbacks
-	) {
+	constructor(durationInput, startButton, pauseButton, callbacks) {
 		this.durationInput = durationInput;
 		this.startButton = startButton;
 		this.pauseButton = pauseButton;
-		if(callbacks) {
-			this.onStart = callbacks.onStart;
+		if (callbacks) {
+			this.onStart1 = callbacks.onStart;
 			this.onTick = callbacks.onTick;
-			// this.onPause = callbacks.onPause;
 			this.onComplete = callbacks.onComplete;
 		}
+
+		this.startButton.addEventListener('click', this.start);
+		this.pauseButton.addEventListener('click', this.pause);
 	}
 
 	start = () => {
-		// this.tick(); // will start within 1 second
-		if (this.onStart){
-			this.onStart();
+		if (this.onStart1) {
+			this.onStart1();
 		}
+		this.tick();
 		this.interval = setInterval(this.tick, 1000);
-
-	}
-
-	pause = () => {
-		clearInterval(this.interval);
-	}
+	};
 
 	tick = () => {
 		if (this.timeRemaining <= 0) {
 			this.pause();
-			if(this.onComplete){
+			if (this.onComplete) {
 				this.onComplete();
 			}
 		} else {
 			this.timeRemaining = this.timeRemaining - 1;
-			if(this.onTick){
+			if (this.onTick) {
 				this.onTick();
 			}
 		}
-	}
+	};
+
+	pause = () => {
+		clearInterval(this.interval);
+	};
 
 	get timeRemaining() {
 		return parseFloat(this.durationInput.value);
 	}
-
-	set timeRemaining(timeRemaining) {
-		this.durationInput.value = timeRemaining;
+	set timeRemaining(time) {
+		this.durationInput.value = time;
 	}
-
-
 }
